@@ -7,12 +7,12 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>Language - German</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
 <section>
-	<h1>Home</h1>
+	<h1>🇩🇪 German</h1>
 
 	<ul>
 		{#each data.posts as { title, permalink }}
