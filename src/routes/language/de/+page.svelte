@@ -1,7 +1,8 @@
 <script lang="ts">
-	import type RedditPost from '$lib/types/RedditPost';
+	import Sentence from '$lib/components/Sentence.svelte';
+	import type PageResult from '$lib/types/PageResult';
 
-	export let data: { posts: RedditPost[] };
+	export let data: PageResult;
 
 	console.log(data.posts);
 </script>
@@ -15,28 +16,20 @@
 	<h1>🇩🇪 German</h1>
 
 	<ul>
-		{#each data.posts as { title, permalink }}
+		{#each data.posts as { post, comments }}
 			<li>
-				<h2>
-					<a href={'https://reddit.com' + permalink}>
-						{title}
-					</a>
-				</h2>
+				<Sentence sentence={post.title} />
+
+				<!-- {#if comments}
+					<ul>
+						{#each comments as comment}
+							<li>
+								{comment.body}
+							</li>
+						{/each}
+					</ul>
+				{/if} -->
 			</li>
 		{/each}
 	</ul>
 </section>
-
-<style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
-	}
-
-	h1 {
-		width: 100%;
-	}
-</style>
