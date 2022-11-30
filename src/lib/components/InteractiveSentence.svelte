@@ -3,6 +3,9 @@
 
 	export let sentence: string;
 
+	// TODO: Do we need to work out a better way to split words?
+	// EG: If we get something like: 'and he said "Hello, I am Josh", something something'
+	// The result would be: ['and', 'he', 'said', '"Hello,', 'I', 'am', 'Josh",', 'something', 'something']
 	const words = sentence.split(' ');
 </script>
 

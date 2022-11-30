@@ -1,10 +1,12 @@
 <script lang="ts">
-	import Sentence from '$lib/components/Sentence.svelte';
-	import type PageResult from '$lib/types/PageResult';
+	import InteractiveSentence from '$lib/components/InteractiveSentence.svelte';
+	import type { PageData } from './$types';
 
-	export let data: PageResult;
+	export let data: PageData;
 
-	console.log(data.posts);
+	const { sentences } = data;
+
+	console.log(sentences);
 </script>
 
 <svelte:head>
@@ -16,19 +18,9 @@
 	<h1>🇩🇪 German</h1>
 
 	<ul>
-		{#each data.posts as { post, comments }}
+		{#each sentences as { content, url }}
 			<li>
-				<Sentence sentence={post.title} />
-
-				<!-- {#if comments}
-					<ul>
-						{#each comments as comment}
-							<li>
-								{comment.body}
-							</li>
-						{/each}
-					</ul>
-				{/if} -->
+				<InteractiveSentence sentence={content} />
 			</li>
 		{/each}
 	</ul>
