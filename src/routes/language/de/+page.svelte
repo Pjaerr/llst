@@ -5,8 +5,6 @@
 	export let data: PageData;
 
 	const { sentences } = data;
-
-	console.log(sentences);
 </script>
 
 <svelte:head>

@@ -88,6 +88,7 @@ export async function fetchSentencesFromReddit(options: RedditRequestOptions): P
 		`https://api.reddit.com/r/${options.subreddit}/hot?limit=${options.count || 10}`
 	).then((r) => r.json());
 
+	// TODO: Also filter titles that are a set length
 	const posts = res.data.children.map((child) => child.data).filter(({ stickied }) => !stickied);
 
 	const commentRequests: Promise<Sentence[]>[] = [];

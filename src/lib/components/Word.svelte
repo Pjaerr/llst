@@ -1,13 +1,13 @@
 <script lang="ts">
-	export let word: string;
+	export let string: string;
 </script>
 
-<button type="button" class="button-reset">
-	{word}
+<button type="button">
+	{string}
 </button>
 
 <style>
-	.button-reset {
+	button {
 		border: none;
 		margin: 0;
 		padding: 0;
@@ -20,10 +20,9 @@
 		-webkit-font-smoothing: inherit;
 		-moz-osx-font-smoothing: inherit;
 		-webkit-appearance: none;
-	}
 
-	button {
 		display: inline-flex;
 		cursor: pointer;
+		color: red;
 	}
 </style>

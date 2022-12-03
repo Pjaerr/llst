@@ -1,24 +1,39 @@
 <script lang="ts">
 	import Word from './Word.svelte';
+	import getWordsFromSentence from '$lib/utils/get-words-from-sentence';
 
 	export let sentence: string;
 
-	// TODO: Do we need to work out a better way to split words?
-	// EG: If we get something like: 'and he said "Hello, I am Josh", something something'
-	// The result would be: ['and', 'he', 'said', '"Hello,', 'I', 'am', 'Josh",', 'something', 'something']
-	const words = sentence.split(' ');
+	const words = getWordsFromSentence(sentence);
+
+	console.log(words);
 </script>
 
 <p>
-	{#each words as word}
-		<Word {word} />
+	{#each words as { string, interactive }}
+		{#if interactive}
+			<Word {string} />
+		{:else}
+			<span class="non-interactive-string">
+				{string}
+			</span>
+		{/if}
 	{/each}
 </p>
 
-<style>
+<style lang="scss">
+	$word-spacing: 3px;
+
 	p {
 		display: inline-flex;
-		gap: 4px;
+		gap: $word-spacing;
 		flex-wrap: wrap;
+	}
+
+	.non-interactive-string {
+		display: inline-flex;
+		// Cancel out the gap between "words" when a word is punctuation (so "What ?" -> "What?")
+		// TODO: What do we do about stuff like 'My name is "Josh"' becoming 'My name is"Josh"' as the speech marks have been moved left by the gap...can we be smart here without context 🤔
+		margin-inline-start: -#{$word-spacing};
 	}
 </style>
